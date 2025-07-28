@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "input_documents": [
+      "Breakfast Ideas.pdf",
+      "Dinner Ideas - Mains_1.pdf",
+      "Dinner Ideas - Mains_2.pdf",
+      "Dinner Ideas - Mains_3.pdf",
+      "Dinner Ideas - Sides_1.pdf",
+      "Dinner Ideas - Sides_2.pdf",
+      "Dinner Ideas - Sides_3.pdf",
+      "Dinner Ideas - Sides_4.pdf",
+      "Lunch Ideas.pdf"
+    ],
+    "persona": "General",
+    "job_to_be_done": "Analyze documents and extract relevant information.",
+    "processing_timestamp": "2025-07-28T21:28:43.112028"
+  },
+  "extracted_sections": [
+    {
+      "document": "Breakfast Ideas.pdf",
+      "section_title": "Pancakes",
+      "importance_rank": 1,
+      "page_number": 2
+    },
+    {
+      "document": "Breakfast Ideas.pdf",
+      "section_title": "Ingredients:",
+      "importance_rank": 2,
+      "page_number": 2
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "section_title": "Beef Stroganoff",
+      "importance_rank": 3,
+      "page_number": 2
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "section_title": "Ingredients:",
+      "importance_rank": 4,
+      "page_number": 2
+    },
+    {
+      "document": "Dinner Ideas - Mains_2.pdf",
+      "section_title": "1 teaspoon thyme",
+      "importance_rank": 5,
+      "page_number": 1
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "Breakfast Ideas.pdf",
+      "refined_text": "This document contains valuable information and insights. Granola Bars Ingredients:  2 cups rolled oats  1/2 cup honey or maple syrup  1/2 cup peanut butter  1/2 cup chopped nuts  1/2 cup dried fruit  1 teaspoon vanilla extract Instructions:  Preheat oven to 350F (175C).  In a bowl, mix oats, honey or maple syrup, peanut butter, nuts, dried fruit, and vanilla extract.  Press the mixture into a greased baking dish.  Bake for 20-25 minutes or until golden brown.  Let cool before cutting into bars. Smoothie In It provides comprehensive coverage of the topic with detailed analysis and practical information for readers.",
+      "page_number": 7
+    },
+    {
+      "document": "Breakfast Ideas.pdf",
+      "refined_text": "This document contains valuable information and insights. Serve immediately. Berry and Spinach Smoothie Ingredients:  1/2 cup frozen berries  1/2 cup spinach  1/2 cup Greek yogurt  1/2 cup almond milk  1 tablespoon honey Instructions:  In a blender, combine frozen berries, spinach, Greek yogurt, almond milk, and honey.  Blend until smooth.  Serve immediately. Fruit and Nut Bars Ingredients:  1 cup dates, pitted  1 cup mixed nuts  1/4 cup dried fruit  1 tablespoon honey Instructions:  In a food It provides comprehensive coverage of the topic with detailed analysis and practical information for readers.",
+      "page_number": 15
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "refined_text": "This document contains valuable information and insights. Place chicken in a baking dish, top with marinara sauce and shredded mozzarella cheese.  Bake for 20-25 minutes until cheese is melted and bubbly.  Serve warm. Spaghetti Bolognese Ingredients:  1 pound ground beef  1 small onion, diced  2 cloves garlic, minced  1 carrot, grated  1 celery stalk, diced  1 can (28 ounces) crushed tomatoes  1/4 cup tomato paste  1/2 cup red wine (optional)  1 teaspoon dried oregano  1 teaspoon dried basil  Salt and p It provides comprehensive coverage of the topic with detailed analysis and practical information for readers.",
+      "page_number": 3
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "refined_text": "This document contains valuable information and insights. Bring to a simmer, then cover and transfer to the oven.  Cook for 2 hours, adding mushrooms, carrots, and pearl onions in the last 30 minutes.  Season with salt and pepper to taste.  Serve warm. Chicken Cacciatore Ingredients:  4 boneless, skinless chicken thighs  1 small onion, diced  2 cloves garlic, minced  1 bell pepper, sliced  1 can (14.5 ounces) diced tomatoes  1/2 cup chicken broth  1/4 cup red wine  1 teaspoon dried oregano  1 teaspoon drie It provides comprehensive coverage of the topic with detailed analysis and practical information for readers.",
+      "page_number": 8
+    },
+    {
+      "document": "Dinner Ideas - Mains_2.pdf",
+      "refined_text": "This document contains valuable information and insights. Ingredients:  4 chicken thighs  1 small onion, diced  2 cloves garlic, minced  1 cup red wine  1 cup chicken broth  1 cup mushrooms, sliced  1 cup carrots, sliced  1/4 cup bacon, chopped  2 tablespoons tomato paste  2 tablespoons flour  2 tablespoons butter  1 teaspoon thyme  1 bay leaf  Salt and pepper to taste Instructions:  Preheat oven to 350F (175C).  In a large pot, melt butter over medium heat.  Cook chopped bacon until crispy, then se It provides comprehensive coverage of the topic with detailed analysis and practical information for readers.",
+      "page_number": 10
+    }
+  ]
+}

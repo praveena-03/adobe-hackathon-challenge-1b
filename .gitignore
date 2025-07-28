@@ -49,8 +49,6 @@ Thumbs.db
 logs/
 
 # Runtime generated files
-output/
-input/
 cache/
 models/
 
