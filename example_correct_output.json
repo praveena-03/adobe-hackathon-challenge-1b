@@ -1,0 +1,69 @@
+{
+    "metadata": {
+        "input_documents": [
+            "research_paper.pdf"
+        ],
+        "persona": "researcher",
+        "job_to_be_done": "Analyze research methodology and findings",
+        "processing_timestamp": "2024-12-20T10:30:45.123456"
+    },
+    "extracted_sections": [
+        {
+            "document": "research_paper.pdf",
+            "section_title": "Introduction",
+            "importance_rank": 1,
+            "page_number": 1
+        },
+        {
+            "document": "research_paper.pdf",
+            "section_title": "Methodology",
+            "importance_rank": 2,
+            "page_number": 3
+        },
+        {
+            "document": "research_paper.pdf",
+            "section_title": "Results",
+            "importance_rank": 3,
+            "page_number": 8
+        },
+        {
+            "document": "research_paper.pdf",
+            "section_title": "Discussion",
+            "importance_rank": 4,
+            "page_number": 12
+        },
+        {
+            "document": "research_paper.pdf",
+            "section_title": "Conclusion",
+            "importance_rank": 5,
+            "page_number": 15
+        }
+    ],
+    "subsection_analysis": [
+        {
+            "document": "research_paper.pdf",
+            "refined_text": "This paper presents advanced machine learning techniques for document analysis. The research focuses on developing novel approaches for extracting structured information from unstructured PDF documents.",
+            "page_number": 1
+        },
+        {
+            "document": "research_paper.pdf",
+            "refined_text": "Our methodology utilizes deep learning models including convolutional neural networks and transformer architectures. We employ a multi-stage approach that combines text extraction, structure analysis, and content classification.",
+            "page_number": 3
+        },
+        {
+            "document": "research_paper.pdf",
+            "refined_text": "The experimental results demonstrate significant improvements in accuracy compared to baseline methods. Our approach achieves 94.2% accuracy in document structure recognition and 89.7% accuracy in content classification.",
+            "page_number": 8
+        },
+        {
+            "document": "research_paper.pdf",
+            "refined_text": "The findings suggest that deep learning approaches are highly effective for document analysis tasks. The multi-stage architecture provides robust performance across different document types and formats.",
+            "page_number": 12
+        },
+        {
+            "document": "research_paper.pdf",
+            "refined_text": "This research contributes to the field of document analysis by introducing novel deep learning techniques. Future work will focus on extending these methods to handle multi-language documents and real-time processing.",
+            "page_number": 15
+        }
+    ]
+} 

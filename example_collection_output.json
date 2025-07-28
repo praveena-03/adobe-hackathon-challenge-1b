@@ -1,0 +1,177 @@
+{
+  "challenge": "Adobe India Hackathon Challenge 1b - Multi-Collection Analysis",
+  "version": "1.0.0",
+  "timestamp": 1703123456.789,
+  "task_info": {
+    "task_id": "collection_1703123456",
+    "collection_path": "/app/input/research_papers",
+    "status": "completed",
+    "processing_summary": {
+      "total_files": 5,
+      "successful": 5,
+      "failed": 0
+    }
+  },
+  "individual_documents": [
+    {
+      "filename": "paper1.pdf",
+      "processing_time": 12.5,
+      "file_size": 1500000,
+      "document_analysis": {
+        "metadata": {
+          "title": "Machine Learning in Document Processing",
+          "author": "Dr. Alice Johnson",
+          "page_count": 12,
+          "total_words": 4000
+        },
+        "structure": {
+          "sections_count": 5,
+          "headings_count": 6,
+          "tables_count": 2,
+          "figures_count": 3
+        }
+      },
+      "persona_analysis": {
+        "persona_type": "researcher",
+        "relevance_score": 0.82,
+        "complexity_assessment": "high"
+      }
+    },
+    {
+      "filename": "paper2.pdf",
+      "processing_time": 18.3,
+      "file_size": 2500000,
+      "document_analysis": {
+        "metadata": {
+          "title": "Deep Learning Approaches for Text Analysis",
+          "author": "Prof. Bob Smith",
+          "page_count": 18,
+          "total_words": 6000
+        },
+        "structure": {
+          "sections_count": 7,
+          "headings_count": 9,
+          "tables_count": 4,
+          "figures_count": 6
+        }
+      },
+      "persona_analysis": {
+        "persona_type": "researcher",
+        "relevance_score": 0.91,
+        "complexity_assessment": "high"
+      }
+    }
+  ],
+  "cross_document_analysis": {
+    "common_themes": [
+      "machine learning",
+      "deep learning",
+      "document analysis",
+      "text processing",
+      "neural networks",
+      "artificial intelligence",
+      "natural language processing",
+      "computer vision",
+      "data analysis",
+      "algorithm optimization"
+    ],
+    "theme_count": 10,
+    "document_relationships": [
+      {
+        "document1": "paper1.pdf",
+        "document2": "paper2.pdf",
+        "similarity_score": 0.85,
+        "relationship_type": "similar"
+      },
+      {
+        "document1": "paper1.pdf",
+        "document2": "paper3.pdf",
+        "similarity_score": 0.72,
+        "relationship_type": "moderately_related"
+      },
+      {
+        "document1": "paper2.pdf",
+        "document2": "paper3.pdf",
+        "similarity_score": 0.78,
+        "relationship_type": "similar"
+      }
+    ],
+    "relationships_count": 3,
+    "knowledge_graph": {
+      "nodes": [
+        "paper1.pdf",
+        "paper2.pdf",
+        "paper3.pdf",
+        "machine learning",
+        "deep learning",
+        "document analysis"
+      ],
+      "edges": [
+        ["paper1.pdf", "machine learning"],
+        ["paper2.pdf", "deep learning"],
+        ["paper3.pdf", "document analysis"]
+      ],
+      "node_types": {
+        "paper1.pdf": "document",
+        "paper2.pdf": "document",
+        "paper3.pdf": "document",
+        "machine learning": "concept",
+        "deep learning": "concept",
+        "document analysis": "concept"
+      },
+      "metrics": {
+        "total_nodes": 6,
+        "total_edges": 3,
+        "density": 0.2,
+        "connected_components": 1
+      }
+    },
+    "insights": [
+      "Collection contains 5 research papers focused on machine learning and document analysis",
+      "Common themes include deep learning, neural networks, and text processing",
+      "Papers show high similarity in methodology and approach",
+      "Research spans both theoretical and practical applications",
+      "All documents contain comprehensive methodology sections"
+    ],
+    "insights_count": 5
+  },
+  "collection_insights": {
+    "total_documents": 5,
+    "successful_processing": 5,
+    "failed_processing": 0,
+    "average_processing_time": 15.4,
+    "total_file_size": 8500000,
+    "common_themes": [
+      "machine learning",
+      "deep learning",
+      "document analysis",
+      "text processing",
+      "neural networks"
+    ],
+    "key_relationships": [
+      {
+        "document1": "paper1.pdf",
+        "document2": "paper2.pdf",
+        "similarity_score": 0.85,
+        "relationship_type": "similar"
+      },
+      {
+        "document1": "paper2.pdf",
+        "document2": "paper3.pdf",
+        "similarity_score": 0.78,
+        "relationship_type": "similar"
+      }
+    ],
+    "collection_summary": "Multi-document analysis completed successfully with cross-document insights generated."
+  },
+  "performance_metrics": {
+    "total_processing_time": 77.0,
+    "average_processing_time": 15.4,
+    "offline_processing": true,
+    "constraints_met": {
+      "time_limit": true,
+      "size_limit": true,
+      "offline_execution": true
+    }
+  }
+} 

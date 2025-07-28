@@ -1,0 +1,170 @@
+{
+  "challenge": "Adobe India Hackathon Challenge 1b",
+  "version": "1.0.0",
+  "timestamp": 1703123456.789,
+  "processing_info": {
+    "filename": "research_paper.pdf",
+    "processing_time_seconds": 15.23,
+    "file_size_bytes": 2048576,
+    "file_size_mb": 1.95,
+    "status": "completed"
+  },
+  "document_analysis": {
+    "metadata": {
+      "title": "Advanced Machine Learning Techniques for Document Analysis",
+      "author": "Dr. John Smith",
+      "page_count": 15,
+      "total_words": 5000,
+      "total_characters": 25000,
+      "creation_date": "2024-01-15",
+      "modification_date": "2024-01-20",
+      "pdf_version": "1.7",
+      "file_properties": {
+        "filename": "research_paper.pdf",
+        "file_size_bytes": 2048576,
+        "file_size_mb": 1.95
+      }
+    },
+    "structure": {
+      "title": "Advanced Machine Learning Techniques for Document Analysis",
+      "sections_count": 6,
+      "headings_count": 8,
+      "tables_count": 3,
+      "figures_count": 5,
+      "sections": [
+        {
+          "title": "Introduction",
+          "content": [
+            {
+              "type": "NarrativeText",
+              "text": "This paper presents advanced machine learning techniques...",
+              "page": 1
+            }
+          ],
+          "page": 1
+        },
+        {
+          "title": "Methodology",
+          "content": [
+            {
+              "type": "NarrativeText",
+              "text": "Our approach utilizes deep learning models...",
+              "page": 3
+            }
+          ],
+          "page": 3
+        }
+      ],
+      "headings": [
+        "Introduction",
+        "Methodology",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "References"
+      ],
+      "tables": [
+        {
+          "text": "Performance comparison of different models...",
+          "page": 8
+        }
+      ],
+      "figures": [
+        {
+          "text": "Figure 1: Model architecture diagram",
+          "page": 4
+        }
+      ]
+    },
+    "content_summary": {
+      "text_blocks_count": 45,
+      "lists_count": 8,
+      "tables_count": 3,
+      "figures_count": 5,
+      "headers_count": 2,
+      "footers_count": 2,
+      "total_content_elements": 65
+    },
+    "extracted_elements": {
+      "text_content": [
+        {
+          "type": "NarrativeText",
+          "text": "This paper presents advanced machine learning techniques for document analysis...",
+          "page": 1
+        }
+      ],
+      "lists": [
+        {
+          "type": "ListItem",
+          "text": "Deep learning models for text classification",
+          "page": 2
+        }
+      ],
+      "tables": [
+        {
+          "type": "Table",
+          "text": "Performance comparison of different models...",
+          "page": 8
+        }
+      ],
+      "figures": [
+        {
+          "type": "Figure",
+          "text": "Figure 1: Model architecture diagram",
+          "page": 4
+        }
+      ],
+      "headers": [
+        {
+          "type": "Header",
+          "text": "Advanced Machine Learning Techniques",
+          "page": 1
+        }
+      ],
+      "footers": [
+        {
+          "type": "Footer",
+          "text": "Page 1",
+          "page": 1
+        }
+      ]
+    }
+  },
+  "persona_analysis": {
+    "persona_type": "researcher",
+    "relevance_score": 0.85,
+    "complexity_assessment": "high",
+    "key_insights": [
+      "Document contains advanced machine learning methodology",
+      "Statistical analysis and performance metrics present",
+      "Research methodology section well-structured",
+      "Results section includes quantitative analysis"
+    ],
+    "recommended_actions": [
+      "Focus on methodology section for implementation details",
+      "Review statistical analysis for validation",
+      "Examine results for performance insights",
+      "Consider methodology for similar research"
+    ],
+    "related_concepts": [
+      "machine learning",
+      "deep learning",
+      "document analysis",
+      "text classification",
+      "neural networks",
+      "performance metrics"
+    ],
+    "summary": "This research document discusses advanced machine learning techniques with comprehensive methodology, statistical analysis, and detailed results. The content is highly relevant for researchers in the field of document analysis and machine learning.",
+    "analysis_confidence": "high"
+  },
+  "performance_metrics": {
+    "processing_efficiency": "high",
+    "memory_usage_optimized": true,
+    "offline_processing": true,
+    "constraints_met": {
+      "time_limit": true,
+      "size_limit": true,
+      "offline_execution": true
+    }
+  }
+} 

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  adobe-hackathon-1b:
+    build: .
+    container_name: adobe-hackathon-1b
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./cache:/app/cache
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MAX_FILE_SIZE_MB=50
+      - MAX_PROCESSING_TIME_SECONDS=60
+      - MAX_CONCURRENT_PROCESSES=4
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+
+  # Optional: Add a simple web interface for testing
+  web-interface:
+    image: nginx:alpine
+    container_name: adobe-hackathon-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/usr/share/nginx/html
+    depends_on:
+      - adobe-hackathon-1b
+    restart: unless-stopped
+
+volumes:
+  input:
+  output:
+  cache:
+  logs: 

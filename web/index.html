@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Hackathon Challenge 1b - PDF Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="file"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="file"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .result pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .persona-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .persona-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .persona-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .persona-card p {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Adobe Hackathon Challenge 1b</h1>
+            <p>Multi-Collection PDF Analysis with Persona-Based Content Analysis</p>
+        </div>
+
+        <div class="content">
+            <!-- Health Status -->
+            <div class="section">
+                <h2>System Status</h2>
+                <div id="health-status">
+                    <div class="status info">Checking system status...</div>
+                </div>
+                <button onclick="checkHealth()">Refresh Status</button>
+            </div>
+
+            <!-- Single PDF Processing -->
+            <div class="section">
+                <h2>Process Single PDF</h2>
+                <form id="single-pdf-form">
+                    <div class="form-group">
+                        <label for="pdf-file">Select PDF File:</label>
+                        <input type="file" id="pdf-file" accept=".pdf" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="persona-type">Persona Type:</label>
+                        <select id="persona-type">
+                            <option value="">No Persona Analysis</option>
+                            <option value="researcher">Researcher</option>
+                            <option value="student">Student</option>
+                            <option value="business_analyst">Business Analyst</option>
+                            <option value="technical_writer">Technical Writer</option>
+                            <option value="legal_professional">Legal Professional</option>
+                            <option value="medical_professional">Medical Professional</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Process PDF</button>
+                </form>
+
+                <div class="loading" id="single-loading">
+                    <div class="spinner"></div>
+                    <p>Processing PDF...</p>
+                </div>
+
+                <div id="single-result"></div>
+            </div>
+
+            <!-- Collection Processing -->
+            <div class="section">
+                <h2>Process Collection</h2>
+                <form id="collection-form">
+                    <div class="form-group">
+                        <label for="collection-path">Collection Path:</label>
+                        <input type="text" id="collection-path" placeholder="/app/input/collection" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collection-persona">Persona Type:</label>
+                        <select id="collection-persona">
+                            <option value="">No Persona Analysis</option>
+                            <option value="researcher">Researcher</option>
+                            <option value="student">Student</option>
+                            <option value="business_analyst">Business Analyst</option>
+                            <option value="technical_writer">Technical Writer</option>
+                            <option value="legal_professional">Legal Professional</option>
+                            <option value="medical_professional">Medical Professional</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Process Collection</button>
+                </form>
+
+                <div class="loading" id="collection-loading">
+                    <div class="spinner"></div>
+                    <p>Processing Collection...</p>
+                </div>
+
+                <div id="collection-result"></div>
+            </div>
+
+            <!-- Available Personas -->
+            <div class="section">
+                <h2>Available Personas</h2>
+                <div id="personas-list">
+                    <div class="status info">Loading personas...</div>
+                </div>
+            </div>
+
+            <!-- Collections -->
+            <div class="section">
+                <h2>Available Collections</h2>
+                <div id="collections-list">
+                    <div class="status info">Loading collections...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+
+        // Check health status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkHealth();
+            loadPersonas();
+            loadCollections();
+        });
+
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                const statusDiv = document.getElementById('health-status');
+                statusDiv.innerHTML = `
+                    <div class="status success">
+                        ✅ System Healthy<br>
+                        Memory: ${data.memory_usage.toFixed(1)}% | 
+                        CPU: ${data.cpu_usage.toFixed(1)}% | 
+                        Active Processes: ${data.active_processes}
+                    </div>
+                `;
+            } catch (error) {
+                const statusDiv = document.getElementById('health-status');
+                statusDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ System Unavailable<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function loadPersonas() {
+            try {
+                const response = await fetch(`${API_BASE}/personas`);
+                const personas = await response.json();
+                
+                const personasDiv = document.getElementById('personas-list');
+                personasDiv.innerHTML = `
+                    <div class="persona-grid">
+                        ${personas.map(persona => `
+                            <div class="persona-card">
+                                <h4>${persona.type.replace('_', ' ').toUpperCase()}</h4>
+                                <p>${persona.description}</p>
+                                <p><strong>Focus Areas:</strong> ${persona.focus_areas.join(', ')}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('personas-list').innerHTML = `
+                    <div class="status error">Failed to load personas: ${error.message}</div>
+                `;
+            }
+        }
+
+        async function loadCollections() {
+            try {
+                const response = await fetch(`${API_BASE}/collections`);
+                const collections = await response.json();
+                
+                const collectionsDiv = document.getElementById('collections-list');
+                if (collections.length === 0) {
+                    collectionsDiv.innerHTML = `
+                        <div class="status info">No collections available</div>
+                    `;
+                } else {
+                    collectionsDiv.innerHTML = `
+                        <div class="persona-grid">
+                            ${collections.map(collection => `
+                                <div class="persona-card">
+                                    <h4>${collection.name}</h4>
+                                    <p><strong>Path:</strong> ${collection.path}</p>
+                                    <p><strong>PDF Count:</strong> ${collection.pdf_count}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('collections-list').innerHTML = `
+                    <div class="status error">Failed to load collections: ${error.message}</div>
+                `;
+            }
+        }
+
+        // Single PDF Processing
+        document.getElementById('single-pdf-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('pdf-file');
+            const personaSelect = document.getElementById('persona-type');
+            const loadingDiv = document.getElementById('single-loading');
+            const resultDiv = document.getElementById('single-result');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select a PDF file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            if (personaSelect.value) {
+                const personaConfig = {
+                    persona_type: personaSelect.value,
+                    focus_areas: [],
+                    expertise_level: "intermediate",
+                    analysis_depth: "standard"
+                };
+                formData.append('persona_config', JSON.stringify(personaConfig));
+            }
+
+            loadingDiv.style.display = 'block';
+            resultDiv.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_BASE}/process-single`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                
+                loadingDiv.style.display = 'none';
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            <h3>✅ Processing Successful</h3>
+                            <p><strong>File:</strong> ${result.filename}</p>
+                            <p><strong>Processing Time:</strong> ${result.processing_time.toFixed(2)}s</p>
+                            <p><strong>File Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)}MB</p>
+                            <h4>Results:</h4>
+                            <pre>${JSON.stringify(result.result, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ Processing Failed: ${result.detail || 'Unknown error'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Error: ${error.message}
+                    </div>
+                `;
+            }
+        });
+
+        // Collection Processing
+        document.getElementById('collection-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const pathInput = document.getElementById('collection-path');
+            const personaSelect = document.getElementById('collection-persona');
+            const loadingDiv = document.getElementById('collection-loading');
+            const resultDiv = document.getElementById('collection-result');
+            
+            const requestData = {
+                collection_path: pathInput.value,
+                persona_configs: []
+            };
+            
+            if (personaSelect.value) {
+                requestData.persona_configs.push({
+                    persona_type: personaSelect.value,
+                    focus_areas: [],
+                    expertise_level: "intermediate",
+                    analysis_depth: "standard"
+                });
+            }
+
+            loadingDiv.style.display = 'block';
+            resultDiv.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_BASE}/process-collection`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const result = await response.json();
+                
+                loadingDiv.style.display = 'none';
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="result">
+                            <h3>✅ Collection Processing Started</h3>
+                            <p><strong>Task ID:</strong> ${result.task_id}</p>
+                            <p><strong>Status:</strong> ${result.status}</p>
+                            <p><strong>Message:</strong> ${result.message}</p>
+                            <button onclick="checkTaskStatus('${result.task_id}')">Check Status</button>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ Processing Failed: ${result.detail || 'Unknown error'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Error: ${error.message}
+                    </div>
+                `;
+            }
+        });
+
+        async function checkTaskStatus(taskId) {
+            try {
+                const response = await fetch(`${API_BASE}/task-status/${taskId}`);
+                const status = await response.json();
+                
+                const resultDiv = document.getElementById('collection-result');
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h3>Task Status</h3>
+                        <p><strong>Task ID:</strong> ${status.task_id}</p>
+                        <p><strong>Status:</strong> ${status.status}</p>
+                        <p><strong>Created:</strong> ${new Date(status.created_at * 1000).toLocaleString()}</p>
+                        <p><strong>Updated:</strong> ${new Date(status.updated_at * 1000).toLocaleString()}</p>
+                        ${status.result_path ? `<p><strong>Result Path:</strong> ${status.result_path}</p>` : ''}
+                        ${status.error ? `<p><strong>Error:</strong> ${status.error}</p>` : ''}
+                        <button onclick="checkTaskStatus('${taskId}')">Refresh Status</button>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error checking task status:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
